@@ -1,0 +1,12 @@
+extends layout 
+
+block body 
+    form(action="/auth/signup" method="post") 
+        h1 Form
+        div 
+            label(for="#email") Email:
+            input#email(type="email")
+        div 
+            label(for="#password") Password:    
+            input#password(type="password")
+        button(type="submit") Submit

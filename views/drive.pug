@@ -1,0 +1,17 @@
+extends layout 
+
+block body 
+    form(action="#") 
+        input(type="text")
+    a(href="/drive/folder/create") Create Folder
+    form(action="/drive/file/upload" method="post" enctype="multipart/form-data") 
+        label(for="upload") Upload File
+        input#upload(type="file", name="file_upload")
+        button(type="submit") Submit
+    ul
+        for file in files 
+            li 
+                p= file.name
+                p= file.size 
+                p= file.created
+                hr

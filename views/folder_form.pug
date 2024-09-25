@@ -1,0 +1,9 @@
+extends layout 
+
+block body 
+    form(action="/drive/folder/create" method="post") 
+        h1 Create Folder 
+        div 
+        label(for="name") Name
+        input#name(type="text" name="folder_name")
+        button(type="submit") Submit
