@@ -1,17 +1,28 @@
 extends layout 
 
 block body 
-    form(action="#") 
-        input(type="text")
-    a(href="/drive/folder/create") Create Folder
-    form(action="/drive/file/upload" method="post" enctype="multipart/form-data") 
-        label(for="upload") Upload File
-        input#upload(type="file", name="file_upload")
-        button(type="submit") Submit
-    ul
+    link(rel="stylesheet", href="/css/drive.css")
+    .search_bar
+        h1 QuickSpace
+        form(action="#") 
+            input(type="text" placeholder="Search")
+    .controls
+        button.create.control_button Create 
+        button.upload.control_button Upload
+        //- a(href="/drive/folder/create") Create Folder
+        //- form(action="/drive/file/upload" method="post" enctype="multipart/form-data")
+        //-     label(for="upload") Upload File
+        //-     input#upload(type="file", name="file_upload")
+        //-     button(type="submit") Submit
+    table.file_table 
+        tr.file_row
+            th Name 
+            th File size 
+            th Last Modified 
+            th Type
         for file in files 
-            li 
-                p= file.name
-                p= file.size 
-                p= file.created
-                hr
+            tr.file_row 
+                td= file.name 
+                td= file.size 
+                td= file.created 
+                td= file.type || "Not set"

@@ -5,7 +5,7 @@ import driveRouter from "./driveRouter.js";
 const router = Router();
 
 router.get("/", (req, res) => {
-  res.render("index");
+  res.render("home");
 });
 
 router.use("/auth", authRouter);

@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --ff-body: "Mv Boli", Corbel, Quicksand, sans-serif;
+
+    --color-1: #000;
+    --color-2: #fff;
+    --color-3: #aaa;
+
+    --size-100: .625rem;
+    --size-200: .75rem;
+    --size-300: 1rem;
+    --size-400: 1.25rem;
+    --size-500: 1.75;
+    --size-600: 2rem;
+    --size-700: 3rem;
+    --size-900: 4rem;
+
+    --fs-100: .7rem;
+    --fs-200: .8rem;
+    --fs-300: 1rem;
+    --fs-400: 1.2rem;
+    --fs-600: 2rem;
+    --fs-800: 4rem;
+}
+
+body {
+    background-color: var(--color-1);
+    color: var(--color-2);
+    font-family: var(--ff-body);
+}
+
+header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+
+    padding: .4rem 1rem;
+
+    .logo {
+        font-size: var(--fs-600);
+        margin-right: auto;
+    }
+
+    nav {
+        display: flex;
+        gap: 1rem;
+
+        a {
+            color: inherit;
+            cursor: pointer;
+            text-decoration: none;
+            transition: .3s ease;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .auth_button {
+        padding: .4rem .6rem;
+        border: .15rem solid var(--color-2);
+        color: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: .5rem;
+        transition: .3s ease;
+
+        &:hover {
+            background-color: var(--color-2);
+            color: var(--color-1)
+        }
+    }
+}
+
+.hero_section {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 8rem 2rem;
+
+    h1 {
+        font-size: var(--fs-800)
+    }
+
+    .slogan {
+        font-size: var(--fs-400);
+    }
+
+    .call_to_action {
+        display: inline-block;
+        background-color: var(--color-2);
+        padding: 1rem;
+        margin-block: .5rem;
+        border-radius: .5rem;
+        color: var(--color-1);
+        text-decoration: none;
+        font-size: var(--fs-400);
+    }
+
+    .subtext {
+        font-size: var(--size-100);
+        color: var(--color-3);
+    }
+}

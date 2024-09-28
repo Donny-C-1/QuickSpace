@@ -1,12 +1,39 @@
 extends layout 
 
 block body 
-    form(action="/auth/signup" method="post") 
-        h1 Form
-        div 
-            label(for="#email") Email:
-            input#email(type="email")
-        div 
-            label(for="#password") Password:    
-            input#password(type="password")
-        button(type="submit") Submit
+    link(rel="stylesheet", href="/css/auth_form.css")
+    .wrapper
+        .title_text 
+            .title.login Login Form 
+            .title.signup Signup Form 
+        .form_container 
+            .slide_controls 
+                label.slide.login(for="login") Login
+                label.slide.signup(for="signup") Signup 
+                input#login(type="radio" name="slider" checked=(authType == "login"))
+                input#signup(type="radio", name="slider" checked=(authType == "signup"))
+                .slide_tab 
+            .form_inner 
+                form.login(action="/auth/login", method="post") 
+                    .field 
+                        input(type="email" name="email" placeholder="Email Address" required)
+                    .field 
+                        input(type="password" name="password" placeholder="Password" minlength="8" required)
+                    .pass_link 
+                        a(href="/auth/reset") Forgot password ?
+                    .field 
+                        input(type="submit" value="Login")
+                    .signup_link Not a member ?
+                        a(href="/auth/signup") Signup now
+
+                form.signup(action="/auth/signup", method="post") 
+                    .field 
+                        input(type="text", name="email" placeholder="Email Address" required)
+                    .field 
+                        input(type="password", name="password" placeholder="Password" minlength="8" required)
+                    .field 
+                        input(type="password", name="confirm_password" placeholder="Confirm Password" minlength="8" required)
+                    .field 
+                        input(type="submit", value="Signup")
+                    .signup_link Already have an account ? 
+                        a(href="/auth/login") Login now

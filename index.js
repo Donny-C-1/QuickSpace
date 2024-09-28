@@ -11,6 +11,7 @@ configDotenv();
 connectDB();
 
 // * Use Middleware
+app.use(express.static("public"));
 app.use(express.urlencoded({ extended: false }));
 app.use(router);
 
