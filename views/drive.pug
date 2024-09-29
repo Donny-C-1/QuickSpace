@@ -1,13 +1,23 @@
 extends layout 
 
 block body 
+    
     link(rel="stylesheet", href="/css/drive.css")
+    script(src="/js/drive.js" defer) 
     .search_bar
         h1 QuickSpace
         form(action="#") 
             input(type="text" placeholder="Search")
     .controls
-        button.create.control_button Create 
+        button.create.control_button(data-action="show_dialog") Create 
+        dialog.dialog(data-id="dialog")
+            .dialog_frame
+                h2.title New Folder 
+                form(action="/drive/folder/create", method="post") 
+                    input(type="text", name="folder_name" data-id="create_folder_input" required)
+                    input(type="hidden" name="dir" value= dir)
+                    button(type="button" data-action="close_dialog") Cancel 
+                    button(type="submit") Create
         button.upload.control_button Upload
         //- a(href="/drive/folder/create") Create Folder
         //- form(action="/drive/file/upload" method="post" enctype="multipart/form-data")
@@ -15,13 +25,21 @@ block body
         //-     input#upload(type="file", name="file_upload")
         //-     button(type="submit") Submit
     table.file_table 
-        tr.file_row
+        tr.row
             th Name 
             th File size 
             th Last Modified 
             th Type
+        for folder in folders 
+            tr.row 
+                td
+                    a(href= `/drive/folder/${folder.id}`)= folder.name 
+                td -
+                td= folder.created
+                td= "folder"
+
         for file in files 
-            tr.file_row 
+            tr.row 
                 td= file.name 
                 td= file.size 
                 td= file.created 

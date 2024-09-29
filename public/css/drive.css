@@ -41,7 +41,7 @@
     width: 100%;
     border-collapse: collapse;
 
-    .file_row {
+    .row {
         padding: var(--size-600);
         border-bottom: 2px solid var(--color-2);
 
@@ -49,4 +49,18 @@
             padding: var(--size-300);
         }
     }
+}
+
+dialog {
+    margin: auto;
+    padding: var(--size-400);
+    background-color: #444;
+    color: var(--color-2);
+    border: 0;
+
+    &::backdrop {
+        background-color: #000;
+        opacity: .7;
+    }
+    
 }

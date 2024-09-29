@@ -34,9 +34,9 @@ const drive = [
 ];
 
 const displayDrive = asyncHandler(async (req, res) => {
-  const folders = await folderModel.find({ parent: "root" });
+  res.locals.folders = await folderModel.find({ parent: null });
   const files = await fileModel.find();
-  res.locals.files = [...folders, ...drive, ...files];
+  res.locals.files = [...files, ...drive];
   res.render("drive");
 });
 
@@ -44,14 +44,24 @@ function displayCreateFolderForm(req, res) {
   res.render("folder_form");
 }
 
+const displayFolder = asyncHandler(async (req, res) => {
+  res.locals.folders = await folderModel.find({ parent: req.params.id });
+  res.locals.files = await fileModel.find({ folder: req.params.id });
+  res.locals.dir = req.params.id;
+  console.log(res.locals.folders);
+  res.render("drive");
+});
+
 const handlerCreateFolderLogic = asyncHandler(async (req, res) => {
   console.log(req.body);
-  const folder = await folderModel.create({
+  await folderModel.create({
     name: req.body.folder_name,
-    parent: "root",
+    parent: req.body.dir || null,
     created: Date.now()
   });
-  res.redirect("/drive");
+  req.body.dir
+    ? res.redirect(`/drive/folder/${req.body.dir}`)
+    : res.redirect("/drive");
 });
 
 const handleFileUpload = [
@@ -69,6 +79,7 @@ const handleFileUpload = [
 
 export {
   displayDrive,
+  displayFolder,
   displayCreateFolderForm,
   handlerCreateFolderLogic,
   handleFileUpload
