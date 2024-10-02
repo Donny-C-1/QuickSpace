@@ -4,3 +4,10 @@ node_modules
 
 # Desktop Files
 desktop.ini
+
+# vscode settings
+.vscode
+
+# special cases
+design/index.html
+design/page4.html

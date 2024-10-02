@@ -1,4 +1,5 @@
 initCreateFolder();
+setupUploadFeature();
 
 function initCreateFolder() {
   const showDialog = document.querySelector("[data-action='show_dialog']");
@@ -11,4 +12,11 @@ function initCreateFolder() {
     dialog.close();
     textField.value = null;
   };
+}
+
+function setupUploadFeature() {
+  const fileUpload = document.querySelector("[data-id='file_upload']");
+  const form = document.querySelector("[data-id='upload_form']");
+
+  fileUpload.addEventListener("change", (_) => form.submit());
 }

@@ -18,7 +18,11 @@ block body
                     input(type="hidden" name="dir" value= dir)
                     button(type="button" data-action="close_dialog") Cancel 
                     button(type="submit") Create
-        button.upload.control_button Upload
+        form(action="/drive/file/upload" method="post" enctype="multipart/form-data" data-id="upload_form")
+            label.upload.control_button(for="file_upload") Upload
+            input#file_upload(type="file" name="file_upload" data-id="file_upload")
+            input(type="hidden" name="dir" value= dir)
+        //- button.upload.control_button Upload
         //- a(href="/drive/folder/create") Create Folder
         //- form(action="/drive/file/upload" method="post" enctype="multipart/form-data")
         //-     label(for="upload") Upload File
