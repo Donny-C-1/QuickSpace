@@ -4,15 +4,35 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title QuickSpace
+        link(rel="stylesheet", href="/css/root.css")
         link(rel="stylesheet", href="/css/home.css")
+        link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer")
+        script(src="/js/home.js" defer) 
     body 
-        header 
-            .logo QuickSpace 
-            nav 
-                a(href="#features") Features 
-                a(href="#pricing") Pricing 
-                a(href="#contact") Contact 
-            a.auth_button(href="/auth/login") Login
+        header.header
+            .navbar
+                a.logo(href="/") QuickSpace 
+                nav.nav
+                    ul.nav_menu
+                        li
+                            a(href="#") Features 
+                        li
+                            a(href="#") Pricing 
+                        li
+                            a(href="#") Contact
+                    a.auth_button(href="/auth/login") Login
+                .toggle_btn(data-action="toggle_nav")
+                    i.fa-solid.fa-bars
+            .dropdown_nav(data-id="dropdown_nav")
+                ul
+                    li
+                        a(href="#") Features
+                    li
+                        a(href="#") Pricing
+                    li
+                        a(href="#") Contact
+                    li
+                        a.auth_button(href="#") Login
         .hero_section 
             .text_block 
                 h1 QuickSpace 

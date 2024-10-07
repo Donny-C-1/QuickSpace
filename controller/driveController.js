@@ -17,29 +17,34 @@ const upload = multer({ storage });
 
 const drive = [
   {
-    name: "Image1",
-    size: 23894,
-    created: Date.now()
+    name: "boiling-water.png",
+    size: "35.8 MB",
+    created: "Apr 23, 2023",
+    type: "image/png"
   },
   {
-    name: "Image2",
-    size: 23894,
-    created: Date.now()
+    name: "boiling-water.png",
+    size: "35.8 MB",
+    created: "Apr 23, 2023",
+    type: "image/png"
   },
   {
-    name: "Image3",
-    size: 23894,
-    created: Date.now()
+    name: "boiling-water.png",
+    size: "35.8 MB",
+    created: "Apr 23, 2023",
+    type: "image/png"
   },
   {
-    name: "Image4",
-    size: 23894,
-    created: Date.now()
+    name: "boiling-water.png",
+    size: "35.8 MB",
+    created: "Apr 23, 2023",
+    type: "image/png"
   },
   {
-    name: "Image5",
-    size: 23894,
-    created: Date.now()
+    name: "boiling-water.png",
+    size: "35.8 MB",
+    created: "Apr 23, 2023",
+    type: "image/png"
   }
 ];
 
@@ -59,10 +64,18 @@ const displayFolder = asyncHandler(async (req, res) => {
 });
 
 const handlerCreateFolderLogic = asyncHandler(async (req, res) => {
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  };
+
   await folderModel.create({
     name: req.body.folder_name,
     parent: req.body.dir || null,
-    created: Date.now()
+    size: 0,
+    created: new Intl.DateTimeFormat("en-BR", options).format(Date.now()),
+    type: "folder"
   });
   req.body.dir
     ? res.redirect(`/drive/folder/${req.body.dir}`)

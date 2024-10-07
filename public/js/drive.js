@@ -1,5 +1,6 @@
 initCreateFolder();
 setupUploadFeature();
+tabSetup();
 
 function initCreateFolder() {
   const showDialog = document.querySelector("[data-action='show_dialog']");
@@ -19,4 +20,19 @@ function setupUploadFeature() {
   const form = document.querySelector("[data-id='upload_form']");
 
   fileUpload.addEventListener("change", (_) => form.submit());
+}
+
+function tabSetup() {
+  const tabButtons = document.querySelectorAll("[data-action='tab']");
+  const slider = document.querySelector("[data-id='tab_cont']");
+
+  for (let btn of tabButtons) {
+    btn.addEventListener("click", function (e) {
+      tabButtons.forEach((v) => v.classList.remove("active"));
+      this.classList.add("active");
+      slider.style.setProperty("--_left", this.offsetLeft + "px");
+      slider.style.setProperty("--_width", this.offsetWidth + 20 + "px");
+      console.log(this.offsetLeft);
+    });
+  }
 }

@@ -3,7 +3,9 @@ import { Schema, ObjectId, model } from "mongoose";
 const Folder = new Schema({
   name: String,
   parent: ObjectId,
-  created: Date
+  created: String,
+  size: Number,
+  type: String
 });
 
 export default model("folder", Folder);

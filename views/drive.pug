@@ -4,12 +4,21 @@ block body
     
     link(rel="stylesheet", href="/css/drive.css")
     script(src="/js/drive.js" defer) 
-    .search_bar
-        h1 QuickSpace
-        form(action="#") 
-            input(type="text" placeholder="Search")
+    header.header
+        h1 
+            a(href="/") QuickSpace
     .controls
-        button.create.control_button(data-action="show_dialog") Create 
+        form(action="/drive/file/upload" method="post" enctype="multipart/form-data" data-id="upload_form")
+            label.upload.control_button(for="file_upload") 
+                svg.icon    
+                    use(href="#upload_icon")
+                span Upload
+                input#file_upload.visually_hidden(type="file" name="file_upload" data-id="file_upload")
+            input(type="hidden" name="dir" value= dir)
+        button.create.control_button(data-action="show_dialog") 
+            svg.icon
+                use(href="#folder_icon")
+            span Create Folder
         dialog.dialog(data-id="dialog")
             .dialog_frame
                 h2.title New Folder 
@@ -18,33 +27,52 @@ block body
                     input(type="hidden" name="dir" value= dir)
                     button(type="button" data-action="close_dialog") Cancel 
                     button(type="submit") Create
-        form(action="/drive/file/upload" method="post" enctype="multipart/form-data" data-id="upload_form")
-            label.upload.control_button(for="file_upload") Upload
-            input#file_upload(type="file" name="file_upload" data-id="file_upload")
-            input(type="hidden" name="dir" value= dir)
-        //- button.upload.control_button Upload
-        //- a(href="/drive/folder/create") Create Folder
-        //- form(action="/drive/file/upload" method="post" enctype="multipart/form-data")
-        //-     label(for="upload") Upload File
-        //-     input#upload(type="file", name="file_upload")
-        //-     button(type="submit") Submit
-    table.file_table 
-        tr.row
+
+    .tab_buttons(data-id="tab_cont")
+        button.active(data-action="tab") Drive 
+        button(data-action="tab") Shared Folders
+
+    .filters 
+        button 
+            span Name
+            svg
+                use(href="#caretdown_icon")
+        button 
+            span Type
+            svg 
+                use(href="#caretdown_icon")
+        button 
+            span Modified
+            svg 
+                use(href="#caretdown_icon")
+
+    table.file_table
+        tr
             th Name 
             th File size 
             th Last Modified 
             th Type
         for folder in folders 
-            tr.row 
+            tr
                 td
                     a(href= `/drive/folder/${folder.id}`)= folder.name 
                 td -
                 td= folder.created
-                td= "folder"
-
+                td= folder.type
         for file in files 
-            tr.row 
+            tr
                 td= file.name 
                 td= file.size 
                 td= file.created 
                 td= file.type || "Not set"
+
+
+    svg.visually_hidden
+        symbol#upload_icon(viewBox="0 0 512 512" fill="currentColor")
+            path(d="M288 109.3V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V109.3l-73.4 73.4c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l128-128c12.5-12.5 32.8-12.5 45.3 0l128 128c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L288 109.3zM64 352H192c0 35.3 28.7 64 64 64s64-28.7 64-64H448c35.3 0 64 28.7 64 64v32c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V416c0-35.3 28.7-64 64-64zM432 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z")
+        symbol#folder_icon(viewBox="0 0 512 512" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px")
+            path(d="M440,432H72a40,40,0,0,1-40-40V120A40,40,0,0,1,72,80h75.89a40,40,0,0,1,22.19,6.72l27.84,18.56A40,40,0,0,0,220.11,112H440a40,40,0,0,1,40,40V392A40,40,0,0,1,440,432Z")
+            line(x1="32" y1="192" x2="480" y2="192")
+
+        symbol#caretdown_icon(viewBox="0 0 512 512" fill="currentColor")
+            path(d="M98,190.06,237.78,353.18a24,24,0,0,0,36.44,0L414,190.06c13.34-15.57,2.28-39.62-18.22-39.62H116.18C95.68,150.44,84.62,174.49,98,190.06Z")

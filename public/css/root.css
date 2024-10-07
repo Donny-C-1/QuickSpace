@@ -2,16 +2,29 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    outline: 0;
 }
 
 :root {
-    --ff-body: "Mv Boli", Corbel, Quicksand, sans-serif;
+    --ff-body: "Bahnschrift", Corbel, Quicksand, sans-serif;
+    --ff-cursive: "Mv Boli", cursive;
+
+
+    --neutral-100: #000;
+    --neutral-200: #262626;
+    --neutral-300: #404040;
+    --neutral-400: #5c5c5c;
+    --neutral-500: #777777;
+    --neutral-600: #949494;
+    --neutral-900: #ffffff;
+
+    --primary: #00ffcc;
 
     --color-1: #000;
     --color-2: #fff;
     --color-3: #aaa;
 
-    --size-100: .625rem;
+    --size-100: .625rem; 
     --size-200: .75rem;
     --size-300: 1rem;
     --size-400: 1.25rem;
@@ -26,10 +39,13 @@
     --fs-400: 1.2rem;
     --fs-600: 2rem;
     --fs-800: 4rem;
+    color-scheme: dark;
 }
 
 body {
-    background-color: var(--color-1);
-    color: var(--color-2);
+    background-color: var(--neutral-200);
+    color: var(--neutral-900);
+    color-scheme: light;
     font-family: var(--ff-body);
+    font-weight: 600;
 }
