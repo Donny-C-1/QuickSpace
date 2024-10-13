@@ -200,7 +200,7 @@ body {
   }
 
   th {
-    padding: 1rem 7rem 1rem 0;
+    padding-block: 1rem;
     color: var(--primary);
 
     &:nth-child(2) {
@@ -212,8 +212,9 @@ body {
     }
     &:nth-child(4) {
       width: 8rem;
-      padding-right: 0rem;
     }
+
+    
   }
 
   td {
@@ -221,7 +222,27 @@ body {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100px;
-    padding-block: 1rem;
+    padding-block: .5rem;
+    padding-right: 2rem;
+
+    &:nth-child(5) {
+      width: 2rem;
+      padding-right: 0;
+      padding-left: 2rem;
+    }
+  }
+
+  .delete_button {
+    color: var(--neutral-900);
+
+    &:is(:hover, :focus-visible) {
+      color: var(--primary);
+    }
+  }
+
+  svg {
+    width: 2rem;
+    aspect-ratio: 1;
   }
 }
 

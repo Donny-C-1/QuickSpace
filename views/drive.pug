@@ -8,13 +8,13 @@ block body
         h1 
             a(href="/") QuickSpace
     .controls
-        form(action="/drive/file/upload" method="post" enctype="multipart/form-data" data-id="upload_form")
+        form(action=`/drive/file/upload?dir=${dir}` method="post" enctype="multipart/form-data" data-id="upload_form")
             label.upload.control_button(for="file_upload") 
                 svg.icon    
                     use(href="#upload_icon")
                 span Upload
                 input#file_upload.visually_hidden(type="file" name="file_upload" data-id="file_upload")
-            input(type="hidden" name="dir" value= dir)
+            input(type="hidden" name="file_dir" value= dir)
         button.create.control_button(data-action="show_dialog") 
             svg.icon
                 use(href="#folder_icon")
@@ -56,15 +56,24 @@ block body
             tr
                 td
                     a(href= `/drive/folder/${folder.id}`)= folder.name 
-                td -
-                td= folder.created
+                td= folder.size
+                td= folder.createdOn
                 td= folder.type
+                td
+                    a(href=`/drive/folder/${folder.id}/delete?dir=${dir}`).delete_button
+                        svg 
+                            use(href="#delete")
         for file in files 
             tr
-                td= file.name 
+                td
+                    a(href= `/drive/file/${file.id}/download`)= file.name 
                 td= file.size 
-                td= file.created 
+                td= file.createdOn
                 td= file.type || "Not set"
+                td 
+                    a(href=`/drive/file/${file.id}/delete?dir=${dir}`).delete_button
+                        svg 
+                            use(href="#delete")
 
 
     svg.visually_hidden
@@ -76,3 +85,6 @@ block body
 
         symbol#caretdown_icon(viewBox="0 0 512 512" fill="currentColor")
             path(d="M98,190.06,237.78,353.18a24,24,0,0,0,36.44,0L414,190.06c13.34-15.57,2.28-39.62-18.22-39.62H116.18C95.68,150.44,84.62,174.49,98,190.06Z")
+
+        symbol#delete(viewBox="0 0 24 24" fill="currentColor")
+            path(d="M14.12,10.47L12,12.59L9.87,10.47L8.46,11.88L10.59,14L8.47,16.12L9.88,17.53L12,15.41L14.12,17.53L15.53,16.12L13.41,14L15.53,11.88L14.12,10.47M15.5,4L14.5,3H9.5L8.5,4H5V6H19V4H15.5M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19M8,9H16V19H8V9Z")
