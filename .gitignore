@@ -5,6 +5,9 @@ node_modules
 # Desktop Files
 desktop.ini
 
+#environment 
+.env
+
 # vscode settings
 .vscode
 
