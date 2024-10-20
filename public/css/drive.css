@@ -145,10 +145,37 @@ body {
   }
 }
 
+.breadcrumb {
+  padding: 1rem 2rem;
+  list-style-type: none;
+  background-color: transparent;
+
+  li {
+    display: inline;
+    font-size: 1.1rem;
+
+    &+li:before {
+      content: '/\00a0';
+      padding: 8px;
+      color: var(--neutral-900);
+    }
+
+    a {
+      color: #0275d8;
+      text-decoration: none;
+
+      &:hover {
+        color: #01447e;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 .filters {
     display: flex;
     gap: 1.5rem;
-    padding: 1.5rem 2rem;
+    padding: 1rem 2rem 1.5rem;
 
     button {
         display: flex;

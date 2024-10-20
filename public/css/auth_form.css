@@ -5,6 +5,7 @@ body {
   height: 100%;
   place-items: center;
   background-color: #f2f2f2;
+  color: var(--neutral-200);
   font-family: Bahnschrift, Arial, Helvetica, sans-serif;;
   /* background-image: linear-gradient(to right, #a445b2, #fa4299); */
 }

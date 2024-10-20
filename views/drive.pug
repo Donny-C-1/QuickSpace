@@ -32,6 +32,14 @@ block body
         button.active(data-action="tab") Drive 
         button(data-action="tab") Shared Folders
 
+    ul.breadcrumb
+        li
+            a(href="/drive") Home
+        if directories
+            for directory in directories 
+                li 
+                    a(href=`/drive/folder/${directory[1]}`)= directory[0]
+
     .filters 
         button 
             span Name

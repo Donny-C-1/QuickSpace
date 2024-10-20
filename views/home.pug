@@ -20,7 +20,11 @@ html(lang="en")
                             a(href="#") Pricing 
                         li
                             a(href="#") Contact
-                    a.auth_button(href="/auth/login") Login
+                    if user
+                        a.auth_button(href="/auth/logout") Logout
+                    else
+                        a.auth_button(href="/auth/login") Login
+                    //- a.auth_button(href="/auth/login") Login
                 .toggle_btn(data-action="toggle_nav")
                     i.fa-solid.fa-bars
             .dropdown_nav(data-id="dropdown_nav")

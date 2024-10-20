@@ -9,7 +9,7 @@ const folderSchema = new Schema({
   sizeInBytes: Number,
   type: String,
   owner: ObjectId,
-  parent: ObjectId
+  location: ObjectId
 });
 
 folderSchema.virtual("createdOn").get(function () {
